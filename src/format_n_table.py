@@ -26,7 +26,6 @@ def setMainCsv():
 
         df.to_csv('main_do_not_use.csv')
 
-
 def openCsv():
     df = pd.read_csv('main_do_not_use.csv')
     return df
@@ -35,13 +34,10 @@ def openCsv():
 def toTable(infos):
     main_df = openCsv()
 
-
     rows = []
-
     c = len(main_df['Issuer'])
 
     for key in infos:
- 
         row_dict = infos[key]
 
         new_row = []

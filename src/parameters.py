@@ -1,5 +1,4 @@
 import re
-import time
 import pandas as pd
 import numpy as np
 
@@ -22,7 +21,6 @@ def getIssuer(text):
 
 # Status OK
 def getDest(text):
-
     try:
         r = re.compile('\d\d\d.\d\d\d.\d\d\d-\d\d')
         cpfs = r.findall(text)
@@ -74,7 +72,6 @@ def getCnpj(text):
 
 # Status OK
 def getEmission(text):
-    
     try:
         r = re.compile("\d\d/\d\d/\d\d\d\d")
         date = r.findall(text)
@@ -86,7 +83,6 @@ def getEmission(text):
         res = date[1]
     except:
         res = date[0]
-
 
     return res
 
@@ -108,30 +104,23 @@ def getQuantity(text):
     for i in range(q):
         
         base = text[ : base].rfind('kg')
-        
         start = text[base + 1 : ].find('\n')
         start = start + base + 1
-
         end = text[start + 1 : ].find('\n')
         end = end + start + 1
 
         # substring = str(f'Quantidade nº {i + 1}: ({text[start : end]} Kg); \n')
         amount = text[start + 1: end]
-        print(f'amount {counter + 1} {amount}')
         fin = amount.find(',')
         amount = amount[ : fin]
         amount = amount.replace('.', '')
         amount = int(amount)
         value += amount
-        print(f'amount after sum {value}')
         counter += 1
 
     res = value/1000
-    print(f'res = {res} ')
 
     return res
-
-
 
 # invoices 4 and 8 got it with str(serie) at the end
 def getNumber(text):

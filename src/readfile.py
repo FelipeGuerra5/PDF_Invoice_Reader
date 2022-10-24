@@ -18,34 +18,24 @@ def readFiles(files):
                     text = page.get_text()
                     text = text.lower()
                     pages.append(text)
-                    print(f'[PAGE TEXT] {text}')
-            # test for multiple.
 
-            
-            print(nfe_title)
-
-            
+            # test for multiple
             for i, page in enumerate(pages):
                 filename = f'{nfe_title}_{i + 1}'
                 try:
                     info = getInfo(page, filename)
                 except:
                     alertUser(filename)
-                print(f'[PAGE] {page}')
                 infos[f'{nfe_title}_{i + 1}'] = info
-
-            print(f'[INFOS] {infos}')
 
             return infos
             
         except:
             alertUser(nfe_title)
     
-
 def getInfo(text, filename):
 
     info = {}
-
 
     info['Filename'] = filename
     info['Issuer'] = getIssuer(text)
@@ -63,7 +53,6 @@ def getInfo(text, filename):
 def alertUser(file_name):
     msg = f'O arquivo:\n\n [ {file_name.title()} ] \n\nNão pode ser lido!'
     easygui.msgbox(msg, title="Alerta!")
-
 
 if __name__ == "__main__":
     print('readfiles')

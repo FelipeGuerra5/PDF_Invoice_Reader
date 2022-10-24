@@ -18,6 +18,8 @@ def readFiles(files):
             for page in doc:
                 text += page.get_text()
 
+        # test for multiple.
+
         nfe_title = file[file.rfind('/') + 1 : ]
         
         print(nfe_title)

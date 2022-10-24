@@ -1,6 +1,5 @@
 from openfiles import openFiles
 from readfile import readFiles
-import parameters
 from format_n_table import toTable, setMainCsv
 
 

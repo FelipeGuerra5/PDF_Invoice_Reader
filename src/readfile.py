@@ -9,9 +9,10 @@ def readFiles(files):
     infos = {}
 
     for n, file in enumerate(files):
-
         nfe_title = file[file.rfind('/') + 1 : ]
-        try:    
+        try:
+            print(f'[FILE] --> {file}')
+
             with fitz.open(file) as doc:
                 pages = []
                 for page in doc:
@@ -19,19 +20,19 @@ def readFiles(files):
                     text = text.lower()
                     pages.append(text)
 
-            # test for multiple
-            for i, page in enumerate(pages):
-                filename = f'{nfe_title}_{i + 1}'
-                try:
-                    info = getInfo(page, filename)
-                except:
-                    alertUser(filename)
-                infos[f'{nfe_title}_{i + 1}'] = info
-
-            return infos
-            
+                    # test for multiple
+                for i, page in enumerate(pages):
+                    filename = f'{nfe_title}_{i + 1}'
+                    try:
+                        info = getInfo(page, filename)
+                    except:
+                        alertUser(filename)
+                    infos[f'{nfe_title}_{i + 1}'] = info
+                    print(infos)
         except:
             alertUser(nfe_title)
+
+    return infos
     
 def getInfo(text, filename):
 
